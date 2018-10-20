@@ -3,7 +3,6 @@ package hacktx.site.endpoint;
 import java.util.List;
 import java.util.Optional;
 
-import hacktx.site.common.pet.PetDto;
 import hacktx.site.common.user.UserPetDto;
 import hacktx.site.common.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +35,7 @@ public class UserEndpoint {
 		return userService.register(request);
 	}
 
-	@GetMapping(value = "/pet")
-	public List<PetDto> getPets() {
-		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
-		UserDto user = userService.findUserByPrincipal(principal).get();
-		return userService.findPets(user);
-	}
+
 
 	@PostMapping(value = "/pet")
 	public UserPetDto addPet(@RequestBody UserPetDto userPetDto) {

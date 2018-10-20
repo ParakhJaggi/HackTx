@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import hacktx.site.common.pet.PetDto;
-import hacktx.site.elasticsearch.PetElasticsearchRepository;
 import hacktx.site.elasticsearch.UserElasticSearchRepository;
 import hacktx.site.elasticsearch.UserPetElasticsearchRepository;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -24,8 +22,7 @@ public class UserDao {
 	@Autowired
 	private UserPetElasticsearchRepository userPetRepository;
 
-	@Autowired
-	private PetElasticsearchRepository petRepository;
+
 
 	public Optional<UserAuthenticationDto> findUserByPrincipal(String principal) {
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -41,17 +38,7 @@ public class UserDao {
 		userRepository.save(userAuthentication);
 	}
 
-	public List<PetDto> findPets(UserDto user) {
-		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
-		String queryString = String.format("userPrincipal=\"%s\"", user.getPrincipal().replace("\"", ""));
-		searchSourceBuilder.query(QueryBuilders.queryStringQuery(queryString));
-
-		List<UserPetDto> userPets = userPetRepository.search(searchSourceBuilder);
-		return userPets.stream()
-				.map(userPet -> petRepository.find(userPet.getPetId()).get())
-				.collect(Collectors.toList());
-	}
 
 	public UserPetDto save(UserPetDto userPetDto) {
 		return userPetRepository.save(userPetDto);

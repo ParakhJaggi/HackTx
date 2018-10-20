@@ -4,13 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import hacktx.site.common.pet.PetDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import alloy.util._Lists;
-import hacktx.site.common.user.UserDto.UserType;
 
 /**
  * Created by jlutteringer on 8/23/17.
@@ -72,7 +70,7 @@ public class UserService {
 
 	public UserDto register(RegistrationRequest request) {
 		UserAuthenticationDto userAuthentication = new UserAuthenticationDto(
-				new UserDto(request.getPrincipal(), _Lists.list("ROLE_USER"), UserType.OWNER, request.getAttributes()), passwordEncoder.encode(request.getPassword()));
+				new UserDto(request.getPrincipal()), passwordEncoder.encode(request.getPassword()));
 
 		userDao.save(userAuthentication);
 		return userAuthentication.getUser();
@@ -82,7 +80,4 @@ public class UserService {
 		return userDao.save(userPetDto);
 	}
 
-	public List<PetDto> findPets(UserDto user) {
-		return userDao.findPets(user);
-	}
 }
