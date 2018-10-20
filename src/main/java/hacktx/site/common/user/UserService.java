@@ -80,4 +80,7 @@ public class UserService {
 		return userDao.save(userPetDto);
 	}
 
+	public void updateBalance(UserDto user){
+		userDao.save(new UserAuthenticationDto(user, null));
+	}
 }
