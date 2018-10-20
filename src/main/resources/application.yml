@@ -1,0 +1,38 @@
+security:
+  oauth2:
+    resource:
+      id: oauth2_id
+
+management:
+  security:
+    roles: ADMIN
+
+---
+spring:
+  profiles: development
+
+web:
+  statics:
+    js-bundle-location: http://localhost:3000/petfinder-site.js
+
+elastic-search:
+  host: localhost
+  port: 9200
+  scheme: http
+  user-name:
+  password:
+---
+spring:
+  profiles: qa
+
+web:
+  statics:
+    js-bundle-location: /statics/petfinder-site.js
+    css-bundle-location: /statics/petfinder-site.css
+
+elastic-search:
+  host: set me
+  port: set me
+  scheme: set me
+  user-name: set me
+  password: set me
