@@ -33,7 +33,23 @@ public class UserEndpoint {
 		return userService.register(request);
 	}
 
+	@GetMapping(value = "/get_balance")
+	public double getBalance() {
+		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+		UserDto user = userService.findUserByPrincipal(principal).get();
+
+		return user.getBalance();
+	}
+
+	@PostMapping(value = "/update_balance/{balance}")
+	public UserDto updateBalance(double balance) {
+		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+		UserDto user = userService.findUserByPrincipal(principal).get();
+		user.setBalance(balance);
+		userService.updateBalance(user);
 
 
+		return user;
+	}
 
 }

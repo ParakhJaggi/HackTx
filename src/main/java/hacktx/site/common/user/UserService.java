@@ -71,4 +71,7 @@ public class UserService {
 
 
 
+	public void updateBalance(UserDto user){
+		userDao.save(new UserAuthenticationDto(user, null));
+	}
 }

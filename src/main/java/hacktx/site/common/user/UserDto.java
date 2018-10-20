@@ -14,6 +14,14 @@ import alloy.util.Momento;
 public class UserDto implements Momento<String> {
 	private String principal;
 
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
 	double balance;
 
 
