@@ -1,5 +1,6 @@
 package hacktx.site.common.user;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,11 @@ public class UserDto implements Momento<String> {
 
 	}
 
+	public UserDto(String principal, List<String> roles) {
+		this.principal = principal;
+	}
+
+
 	public String getPrincipal() {
 		return principal;
 	}
@@ -40,5 +46,15 @@ public class UserDto implements Momento<String> {
 		return principal;
 	}
 
+    public List<String> getRoles() {
+	    return new ArrayList<String>();
+    }
+
+    public void setRoles(List<String> roles) {
+    }
+
+    public enum UserType {
+		OWNER, SITTER
+	}
 
 }

@@ -1,9 +1,7 @@
 package hacktx.site.endpoint;
 
-import java.util.List;
 import java.util.Optional;
 
-import hacktx.site.common.user.UserPetDto;
 import hacktx.site.common.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,8 +35,5 @@ public class UserEndpoint {
 
 
 
-	@PostMapping(value = "/pet")
-	public UserPetDto addPet(@RequestBody UserPetDto userPetDto) {
-		return userService.save(userPetDto);
-	}
+
 }
