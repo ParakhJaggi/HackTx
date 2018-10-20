@@ -71,6 +71,10 @@ dependencies {
 	compile group: 'org.elasticsearch', name: 'elasticsearch', version: '6.0.1'
 	compile group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '6.0.1'
 
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180725.0427'
+	compile group: 'com.sun.xml.bind', name: 'jaxb-core', version: '2.3.0.1'
+	compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.4.0-b180725.0644'
+	compile group: 'javax.activation', name: 'activation', version: '1.1.1'
 	testCompile group: 'junit', name: 'junit'
 }
 
@@ -139,7 +143,11 @@ task functionalTest(type: Test, dependsOn: 'build') {
 def isNpmInstalled() {
 	try {
 		exec {
-			commandLine "npm", "--version"
+            if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
+                commandLine "npm.cmd", "--version"
+            } else {
+                commandLine "npm", "--version"
+            }
 		}
 	} catch (Exception e) {
 		return false
@@ -183,3 +191,8 @@ processResources {
 }
 
 tasks.processResources.dependsOn webpack
+
+task stage() {
+	dependsOn clean, build
+}
+build.mustRunAfter clean
