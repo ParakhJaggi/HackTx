@@ -12,44 +12,30 @@ import alloy.util.Momento;
  */
 public class UserDto implements Momento<String> {
 	private String principal;
-	private List<String> roles;
-	private UserType type;
-	private Map<String, Object> attributes;
-	private String myNewField;
+	//private List<String> roles;
+	//private UserType type;
+	//private Map<String, Object> attributes;
+	//private String myNewField;
+	double balance;
+
 
 	private UserDto() {
 
 	}
 
-	public UserDto(String principal, List<String> roles, UserType type, Map<String, Object> attributes) {
+	public UserDto(String principal) {
 		this.principal = principal;
-		this.roles = roles;
-		this.attributes = attributes;
+
 	}
 
 	public String getPrincipal() {
 		return principal;
 	}
 
-	public List<String> getRoles() {
-		return roles;
-	}
 
-	public Map<String, Object> getAttributes() {
-		return attributes;
-	}
 
-	public UserType getType() {
-		return type;
-	}
 
-	public String getMyNewField() {
-		return myNewField;
-	}
 
-	public void setMyNewField(String myNewField) {
-		this.myNewField = myNewField;
-	}
 
 	@JsonIgnore
 	@Override
@@ -57,7 +43,5 @@ public class UserDto implements Momento<String> {
 		return principal;
 	}
 
-	public enum UserType {
-		OWNER, SITTER
-	}
+
 }
