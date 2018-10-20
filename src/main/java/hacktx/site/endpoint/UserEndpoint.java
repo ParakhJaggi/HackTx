@@ -1,9 +1,7 @@
 package hacktx.site.endpoint;
 
-import java.util.List;
 import java.util.Optional;
 
-import hacktx.site.common.user.UserPetDto;
 import hacktx.site.common.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,10 +33,23 @@ public class UserEndpoint {
 		return userService.register(request);
 	}
 
+	@GetMapping(value = "/get_balance")
+	public double getBalance() {
+		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+		UserDto user = userService.findUserByPrincipal(principal).get();
 
-
-	@PostMapping(value = "/pet")
-	public UserPetDto addPet(@RequestBody UserPetDto userPetDto) {
-		return userService.save(userPetDto);
+		return user.getBalance();
 	}
+
+	@PostMapping(value = "/update_balance/{balance}")
+	public UserDto updateBalance(double balance) {
+		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+		UserDto user = userService.findUserByPrincipal(principal).get();
+		user.setBalance(balance);
+		userService.updateBalance(user);
+
+
+		return user;
+	}
+
 }

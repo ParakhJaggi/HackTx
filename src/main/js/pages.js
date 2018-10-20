@@ -33,7 +33,12 @@ export class RegisterPage extends React.Component {
 						<h2>Register</h2>
 						<hr />
 						<Login.RegistrationForm />
+						<div className="text-center">
+							<a className="d-block small" href="/#/login">Login</a>
+
+						</div>
 					</div>
+
 				</div>
 			</div>
 		);
@@ -49,6 +54,11 @@ export class LoginPage extends React.Component {
 						<h2>Login</h2>
 						<hr />
 						<Login.LoginForm />
+						<div className="text-center">
+							<a className="d-block small" href="/#/page-1">Play Game</a>
+
+						</div>
+
 					</div>
 				</div>
 			</div>

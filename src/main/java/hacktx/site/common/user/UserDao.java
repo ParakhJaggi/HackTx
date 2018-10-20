@@ -1,11 +1,8 @@
 package hacktx.site.common.user;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import hacktx.site.elasticsearch.UserElasticSearchRepository;
-import hacktx.site.elasticsearch.UserPetElasticsearchRepository;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +16,7 @@ public class UserDao {
 	@Autowired
 	private UserElasticSearchRepository userRepository;
 
-	@Autowired
-	private UserPetElasticsearchRepository userPetRepository;
+
 
 
 
@@ -40,7 +36,5 @@ public class UserDao {
 
 
 
-	public UserPetDto save(UserPetDto userPetDto) {
-		return userPetRepository.save(userPetDto);
-	}
+
 }

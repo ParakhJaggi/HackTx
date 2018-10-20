@@ -32,7 +32,6 @@ public class UserService {
 	public static class RegistrationRequest {
 		private String principal;
 		private String password;
-		private String myNewField;
 		private Map<String, Object> attributes;
 
 		public String getPrincipal() {
@@ -59,13 +58,7 @@ public class UserService {
 			this.attributes = attributes;
 		}
 
-		public String getMyNewField() {
-			return myNewField;
-		}
 
-		public void setMyNewField(String myNewField) {
-			this.myNewField = myNewField;
-		}
 	}
 
 	public UserDto register(RegistrationRequest request) {
@@ -76,8 +69,9 @@ public class UserService {
 		return userAuthentication.getUser();
 	}
 
-	public UserPetDto save(UserPetDto userPetDto) {
-		return userDao.save(userPetDto);
-	}
 
+
+	public void updateBalance(UserDto user){
+		userDao.save(new UserAuthenticationDto(user, null));
+	}
 }
