@@ -1,5 +1,5 @@
 
-var cards = require('../lib/cards');
+var cards = require('../cards');
 var Rank = cards.Rank;
 var Suit = cards.Suit;
 

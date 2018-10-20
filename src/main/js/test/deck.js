@@ -1,6 +1,6 @@
 
-var decks = require('../lib/decks');
-var cards = require('../lib/cards');
+var decks = require('../decks');
+var cards = require('../cards');
 var Suit = cards.Suit;
 var Rank = cards.Rank;
 
