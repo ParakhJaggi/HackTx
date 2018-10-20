@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Users from 'js/users';
 import * as Login from 'js/login';
+import * as Game from 'js/game';
 
 export class Home extends React.Component {
 	render() {
@@ -16,8 +17,7 @@ export class Home extends React.Component {
 					<li><Link to="/register">Register</Link></li>
 					<li><Link to="/login">Login</Link></li>
 					<li><Link to="/page-1">Page 1</Link></li>
-					<li><Link to="/page-2">Page 2</Link></li>
-					<li><Link to="/page-3">Page 3</Link></li>
+					<li><Link to="/game">Game</Link></li>
 				</ul>
 			</div>
 		);
@@ -93,21 +93,11 @@ Page1 = connect(
 
 export { Page1 };
 
-export class Page2 extends React.Component {
+export class GamePage extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				This is page 2.
-			</div>
-		);
-	}
-}
-
-export class Page3 extends React.Component {
-	render() {
-		return (
-			<div className="container padded">
-				This is page 3.
+				<Game.Game />
 			</div>
 		);
 	}
