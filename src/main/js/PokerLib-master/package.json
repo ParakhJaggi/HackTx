@@ -1,0 +1,18 @@
+{ "name": "pokerlib"
+, "description": "Poker library. Deck management, hands ranking"
+, "keywords": [ "poker", "deck", "hard", "library" ]
+, "version": "0.0.1alpha"
+, "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
+, "repository": { "type": "git", "url": "git://github.com/ajlopez/PokerLib.git" }
+, "main": "./lib/pokerlib.js"
+, "engines": { "node": ">= 6.0.0" }
+, "scripts": {
+    "test": "simpleunit -r ./test"
+  }
+, "dependencies": {
+  }
+, "devDependencies": {
+    "simpleunit": "0.0.7"
+  }
+}
+
