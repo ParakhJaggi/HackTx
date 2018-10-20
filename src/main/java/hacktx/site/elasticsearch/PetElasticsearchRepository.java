@@ -1,12 +1,11 @@
-package petfinder.site.elasticsearch;
+package hacktx.site.elasticsearch;
 
+import hacktx.site.common.pet.PetDto;
 import org.springframework.stereotype.Service;
 
 import alloy.elasticsearch.ElasticSearchClientProvider;
 import alloy.elasticsearch.ElasticSearchIndex;
 import alloy.elasticsearch.ElasticSearchRepository.ElasticSearchJsonRepository;
-import petfinder.site.common.pet.PetDto;
-import petfinder.site.common.user.UserAuthenticationDto;
 
 /**
  * Created by jlutteringer on 2/7/18.
@@ -14,6 +13,6 @@ import petfinder.site.common.user.UserAuthenticationDto;
 @Service
 public class PetElasticsearchRepository extends ElasticSearchJsonRepository<PetDto, Long> {
 	public PetElasticsearchRepository(ElasticSearchClientProvider provider) {
-		super(new ElasticSearchIndex(provider, "petfinder-pets"), PetDto.class);
+		super(new ElasticSearchIndex(provider, "hacktx-pets"), PetDto.class);
 	}
 }

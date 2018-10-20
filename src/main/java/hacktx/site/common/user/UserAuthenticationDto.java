@@ -1,8 +1,7 @@
-package petfinder.site.common.user;
+package hacktx.site.common.user;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-import alloy.util.AlloyAuthentication;
 import alloy.util.Momento;
 
 /**

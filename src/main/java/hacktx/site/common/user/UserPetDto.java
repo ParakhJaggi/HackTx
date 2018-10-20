@@ -1,4 +1,4 @@
-package petfinder.site.common.user;
+package hacktx.site.common.user;
 
 import java.util.UUID;
 

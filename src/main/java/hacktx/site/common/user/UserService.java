@@ -1,20 +1,16 @@
-package petfinder.site.common.user;
+package hacktx.site.common.user;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import hacktx.site.common.pet.PetDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import alloy.util.AlloyAuthentication;
-import alloy.util.Wait;
 import alloy.util._Lists;
-import alloy.util._Maps;
-import petfinder.site.common.pet.PetDto;
-import petfinder.site.common.user.UserDto.UserType;
+import hacktx.site.common.user.UserDto.UserType;
 
 /**
  * Created by jlutteringer on 8/23/17.

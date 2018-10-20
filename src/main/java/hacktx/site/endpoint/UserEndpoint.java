@@ -1,9 +1,11 @@
-package petfinder.site.endpoint;
+package hacktx.site.endpoint;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
+import hacktx.site.common.pet.PetDto;
+import hacktx.site.common.user.UserPetDto;
+import hacktx.site.common.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import petfinder.site.common.pet.PetDto;
-import petfinder.site.common.user.UserDao;
-import petfinder.site.common.user.UserDto;
-import petfinder.site.common.user.UserPetDto;
-import petfinder.site.common.user.UserService;
-import petfinder.site.common.user.UserService.RegistrationRequest;
+import hacktx.site.common.user.UserDto;
 
 /**
  * Created by jlutteringer on 8/23/17.
@@ -35,7 +32,7 @@ public class UserEndpoint {
 	}
 
 	@PostMapping(value = "/register")
-	public UserDto register(@RequestBody RegistrationRequest request) {
+	public UserDto register(@RequestBody UserService.RegistrationRequest request) {
 		return userService.register(request);
 	}
 

@@ -1,18 +1,13 @@
-package petfinder.site.common.pet;
+package hacktx.site.common.pet;
 
-import java.util.Map;
 import java.util.Optional;
 
-import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.google.common.collect.ImmutableMap;
-
 import alloy.elasticsearch.ElasticSearchClientProvider;
-import petfinder.site.elasticsearch.PetElasticsearchRepository;
-import petfinder.site.elasticsearch.PetfinderElasticSearchClientProvider;
+import hacktx.site.elasticsearch.PetElasticsearchRepository;
 
 /**
  * Created by jlutteringer on 8/23/17.
