@@ -1,10 +1,10 @@
 
-var cards = require('../cards');
-var Rank = cards.Rank;
-var Suit = cards.Suit;
+let cards = require('../cards');
+let Rank = cards.Rank;
+let Suit = cards.Suit;
 
 exports['create card with rank and suit'] = function (test) {
-    var card = cards.card(Rank.Ace, Suit.Spade);
+    let card = cards.card(Rank.Ace, Suit.Spade);
     
     test.ok(card);
     test.equal(typeof card, 'object');
@@ -13,8 +13,8 @@ exports['create card with rank and suit'] = function (test) {
 };
 
 exports['card with same rank ans suit give the same object'] = function (test) {
-    var card1 = cards.card(Rank.Ace, Suit.Spade);
-    var card2 = cards.card(Rank.Ace, Suit.Spade);
+    let card1 = cards.card(Rank.Ace, Suit.Spade);
+    let card2 = cards.card(Rank.Ace, Suit.Spade);
     
     test.strictEqual(card1, card2);
 };
