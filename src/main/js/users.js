@@ -16,8 +16,8 @@ export function authenticate(username, password) {
 				password
 			},
 			auth: {
-				username: 'petfinder-app',
-				password: 'petfinder-app-secret'
+				username: 'hacktx-app',
+				password: 'hacktx-app-secret'
 			}
 		}
 	);

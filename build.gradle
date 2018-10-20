@@ -16,7 +16,7 @@ plugins {
 	id 'org.springframework.boot' version '1.5.7.RELEASE'
 }
 
-group 'petfinder'
+group 'hacktx'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'project-report'

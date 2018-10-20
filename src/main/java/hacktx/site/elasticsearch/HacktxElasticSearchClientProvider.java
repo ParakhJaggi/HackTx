@@ -1,4 +1,4 @@
-package petfinder.site.elasticsearch;
+package hacktx.site.elasticsearch;
 
 import javax.annotation.PostConstruct;
 
@@ -20,7 +20,7 @@ import alloy.elasticsearch.ElasticSearchClientProvider;
  * Created by jlutteringer on 1/15/18.
  */
 @Service
-public class PetfinderElasticSearchClientProvider implements ElasticSearchClientProvider {
+public class HacktxElasticSearchClientProvider implements ElasticSearchClientProvider {
 	private RestHighLevelClient client;
 
 	@Value("${elastic-search.host}")

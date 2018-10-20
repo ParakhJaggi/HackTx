@@ -1,4 +1,4 @@
-package petfinder.site.security;
+package hacktx.site.security;
 
 import java.util.stream.Collectors;
 
@@ -10,15 +10,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import petfinder.site.common.user.UserAuthenticationDto;
-import petfinder.site.common.user.UserDao;
-import petfinder.site.common.user.UserService;
+import hacktx.site.common.user.UserAuthenticationDto;
+import hacktx.site.common.user.UserService;
 
 /**
  * Created by jlutteringer on 1/15/18.
  */
 @Service
-public class PetfinderUserDetailsService implements UserDetailsService {
+public class HacktxUserDetailsService implements UserDetailsService {
 	@Autowired
 	private UserService userService;
 

@@ -13,7 +13,7 @@ spring:
 
 web:
   statics:
-    js-bundle-location: http://localhost:3000/petfinder-site.js
+    js-bundle-location: http://localhost:3000/hacktx-site.js
 
 elastic-search:
   host: localhost
@@ -27,8 +27,8 @@ spring:
 
 web:
   statics:
-    js-bundle-location: /statics/petfinder-site.js
-    css-bundle-location: /statics/petfinder-site.css
+    js-bundle-location: /statics/hacktx-site.js
+    css-bundle-location: /statics/hacktx-site.css
 
 elastic-search:
   host: set me

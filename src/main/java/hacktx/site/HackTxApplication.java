@@ -1,4 +1,4 @@
-package petfinder.site;
+package hacktx.site;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,9 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Created by jlutteringer on 8/22/17.
  */
 @SpringBootApplication
-public class PetfinderApplication {
+public class HackTxApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(PetfinderApplication.class, args);
+		SpringApplication.run(HackTxApplication.class, args);
 	}
 }
 

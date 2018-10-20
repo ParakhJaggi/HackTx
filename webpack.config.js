@@ -11,7 +11,7 @@ const test = path.join(root, 'src/test');
 const dest = path.join(root, 'build');
 
 let main = 'js/app.js';
-let libraryName = 'petfinder-site';
+let libraryName = 'hacktx-site';
 let outputFile = '';
 let port = 3000;
 

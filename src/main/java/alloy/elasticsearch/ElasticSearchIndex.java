@@ -1,11 +1,9 @@
 package alloy.elasticsearch;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.get.GetRequest;
@@ -14,22 +12,14 @@ import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.support.WriteRequest.RefreshPolicy;
 import org.elasticsearch.common.xcontent.XContentType;
-import org.elasticsearch.index.engine.Engine.Delete;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 
-import alloy.util.Identifiable;
 import alloy.util.Json;
-import alloy.util.Momento;
 import alloy.util.Momento.Momentizer;
 import alloy.util.Serializer;
 import alloy.util._Exceptions;
 import alloy.util._Lists;
-import petfinder.site.common.user.UserDto;
 
 /**
  * Created by jlutteringer on 1/15/18.

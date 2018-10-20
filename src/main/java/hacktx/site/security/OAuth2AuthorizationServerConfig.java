@@ -1,4 +1,4 @@
-package petfinder.site.security;
+package hacktx.site.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -53,8 +53,8 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
-				.withClient("petfinder-app")
-					.secret("petfinder-app-secret")
+				.withClient("hacktx-app")
+					.secret("hacktx-app-secret")
 					.authorizedGrantTypes("client_credentials", "refresh_token", "password")
 					.authorities("ROLE_TRUSTED_CLIENT")
 					.scopes("read", "write")
