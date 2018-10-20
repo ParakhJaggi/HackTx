@@ -29,8 +29,6 @@ public class HacktxUserDetailsService implements UserDetailsService {
 		return new User(
 				userAuthentication.getUser().getPrincipal(),
 				userAuthentication.getPassword(),
-				userAuthentication.getUser().getRoles().stream()
-						.map(SimpleGrantedAuthority::new)
-						.collect(Collectors.toList()));
+				null);
 	}
 }
