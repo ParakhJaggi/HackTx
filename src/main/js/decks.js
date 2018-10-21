@@ -1,6 +1,8 @@
-
 import * as Cards from 'js/cards';
 import React from 'react';
+import Images from 'js/images';
+const ImageMap = [Images.AceClubs, Images.TwoClubs, Images.ThreeClubs, Images.FourClubs, Images.FiveClubs, Images.SixClubs, Images.SevenClubs, Images.EightClubs, Images.NineClubs, Images.TenClubs, Images.JackClubs, Images.QueenClubs, Images.KingClubs, Images.AceHearts, Images.TwoHearts, Images.ThreeHearts, Images.FourHearts, Images.FiveHearts, Images.SixHearts, Images.SevenHearts, Images.EightHearts, Images.NineHearts, Images.TenHearts, Images.JackHearts, Images.QueenHearts, Images.KingHearts, Images.AceDiamonds, Images.TwoDiamonds, Images.ThreeDiamonds, Images.FourDiamonds, Images.FiveDiamonds, Images.SixDiamonds, Images.SevenDiamonds, Images.EightDiamonds, Images.NineDiamonds, Images.TenDiamonds, Images.JackDiamonds, Images.QueenDiamonds, Images.KingDiamonds, Images.AceSpades, Images.TwoSpades, Images.ThreeSpades, Images.FourSpades, Images.FiveSpades, Images.SixSpades, Images.SevenSpades, Images.EightSpades, Images.NineSpades, Images.TenSpades, Images.JackSpades, Images.QueenSpades, Images.KingSpades];
+
 let Rank = Cards.Rank;
 let Suit = Cards.Suit;
 let card = Cards.Card;
@@ -8,12 +10,12 @@ let card = Cards.Card;
 export class Deck {
     constructor() {
         this.deck = [];
+        this.imageIndex = [];
 
-		for (let n1 in Suit) {
-			let s = Suit[n1];
-			for (let n2 in Rank) {
-				let r = Rank[n2];
-				this.deck.push(new card(r, s));
+		for (let i in Suit) {
+			for (let j in Rank) {
+				let imageIndex = i+j;
+				this.deck.push(new card(Rank[j], Suit[i]));
 			}
 		}
     }
@@ -33,21 +35,11 @@ export class Deck {
 		}
     };
 
-    printCards = () => {
-        let result = '';
-        if(this.deck !== null && this.deck.length > 0) {
-			for (let i = 0; i < this.deck.length; i++) {
-				console.log(this.deck[i]);
-				//result =  result + this.deck[i].rank + ' ' + this.deck[i].suit + ', ';
-				result = result + this.deck[i].getCardPath() + '\r\n';
-			}
-			return result;// return Object.values(this.deck)
+	showDeckImages = () => {
+		let images = [];
+		for (let i in ImageMap) {
+			images.push(<img src={ImageMap[i]} key={ImageMap[i] + '-' + i} />);
 		}
-    };
-
-	printCard = () => {
-		if(this.deck !== null && this.deck.length > 0) {
-			return this.deck[0].getCardPath();
-		}
+		return images;
 	};
 }

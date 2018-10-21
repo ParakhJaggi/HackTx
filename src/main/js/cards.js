@@ -1,7 +1,3 @@
-
-// export let Rank = { Ace: 1, King: 2, Queen: 3, Jack: 4, '10': 5, '9': 6, '8': 7, '7': 8, '6': 9, '5': 10, '4': 11, '3': 12, '2': 13 };
-// export let Suit = { Diamond: 1, Club: 2, Heart: 3, Spade: 4 };
-
 export let Rank = { Ace: 1, King: 2, Queen: 3, Jack: 4, '10': 5, '9': 6, '8': 7, '7': 8, '6': 9, '5': 10, '4': 11, '3': 12, '2': 13 };
 export let Suit = { Diamond: 1, Club: 2, Heart: 3, Spade: 4 };
 
@@ -14,7 +10,7 @@ export class Card {
 		this.suit = suit;
 	}
 
-	getCardPath = () => {
-	    return 'images/cards/' + SuitToWord[this.suit] + '/' + RankToWord[this.rank] + '.jpg';
-    }
+    getCardName = () => {
+		return RankToWord[this.rank] + SuitToWord[this.suit];
+	};
 }
