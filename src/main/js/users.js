@@ -65,6 +65,7 @@ Actions.updateBalance = val => {
 };
 
 Actions.register = user => {
+	user.balance = 0;
 	return (dispatch) => {
 		return register(user).then(() => {
 			return dispatch(Actions.authenticate(user.principal, user.password));
