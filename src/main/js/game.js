@@ -28,7 +28,6 @@ const tableStyle = {
 const garlicStyle = {
 	width: 200,
 	height: 200,
-	backgroundImage: `url(${garlicGambler})`,
 	margin: 'auto',
 	textAlign: 'center',
 	paddingRight: 0,
