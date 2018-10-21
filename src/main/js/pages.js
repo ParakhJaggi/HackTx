@@ -6,6 +6,15 @@ import {connect} from 'react-redux';
 import * as Users from 'js/users';
 import * as Login from 'js/login';
 import * as Game from 'js/game';
+import garlicGambler from "../resources/images/garlicgambler.png";
+
+const garlicStyle = {
+    width: 900,
+    height: 900,
+    textAlign: 'center',
+	backgroundRepeat: 'no-repeat',
+	repeat: 'no-repeat'
+};
 
 export class NavBar1 extends React.Component {
 	logoutClick = () => {
@@ -69,9 +78,7 @@ export class Home extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				This is the home page.
-
-
+                <img src={garlicGambler} style={garlicStyle}/>
 			</div>
 		);
 	}
