@@ -6,11 +6,19 @@ import {connect} from 'react-redux';
 import * as Bessemer from 'js/alloy/bessemer/components';
 import * as Users from 'js/users';
 import * as Deck from 'js/decks';
-import * as Table from 'js/table';
 import {Rank, Suit} from 'js/cards';
 import BlackJackTitle from '../resources/images/blackjack.png';
 import CardDeck from '../resources/images/blackjack.png';
 import * as ReduxForm from 'redux-form';
+import cloth from '../resources/images/poker_cloth.jpg';
+
+const tableStyle = {
+	width: 1000,
+	height: 750,
+	backgroundRepeat: true,
+	backgroundImage: `url(${cloth})`,
+	borderRadius: '20em'
+};
 
 const centerStyle = {textAlign: 'center'};
 
@@ -75,8 +83,7 @@ class Game extends React.Component {
 	addToBalance = () =>  {
 		let u = this.props.user;
 		console.log('Balance before update: ' + u.balance);
-		this.props.updateBalance(10);
-		setTimeout(this.forceUpdate, 1500);
+		this.props.updateBalance(10).then(this.forceUpdate());
 		u = this.props.user;
 		console.log('Balance after update: ' + u.balance);
 	};
@@ -88,7 +95,9 @@ class Game extends React.Component {
 			<div className="container padded">
 				<div style={centerStyle}><img src={BlackJackTitle}/></div>
 
-				<Table.Table/>
+				<div className="container padded rounded-50 border-secondary" style={tableStyle}>
+					Inside the table.
+				</div>
 
 				<div>Deck Size: {this.deck.size()}</div>
 				<div>Full deck of cards...</div>
