@@ -37,6 +37,8 @@ class Game extends React.Component {
 	};
 
 	restart = () =>  {
+		this.deck = new Deck.Deck();
+		this.forceUpdate();
 
 	};
 
