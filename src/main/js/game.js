@@ -70,8 +70,10 @@ class Game extends React.Component {
 					{'card': this.deck.popCardFromTop(), 'visibility': true},
 				],
 				done: false
-			}
+			},
+			bet: 10
 		};
+		this.state.result = 'incomplete';
 	}
 
 	shuffleDeck = () => {
@@ -102,11 +104,8 @@ class Game extends React.Component {
 				done: false
 			}
 		};
+		this.state.result = 'incomplete';
 		this.forceUpdate();
-	};
-
-	getWinner = () => {
-
 	};
 
 	getValue = (player) => {
@@ -148,45 +147,46 @@ class Game extends React.Component {
 	};
 
 	dealerMove = () => {
-		if(this.getDealerValue() > 17){
-			this.state.dealer.hand.push({'card': this.deck.popCardFromTop(), 'visibility': true});
+		if(this.state.user.done){
+			while(this.getDealerValue() <= 17){
+				this.state.dealer.hand.push({'card': this.deck.popCardFromTop(), 'visibility': true});
+			}
+			this.state.dealer.done = true;
+		} else {
+			if(this.getDealerValue() <= 17){
+				this.state.dealer.hand.push({'card': this.deck.popCardFromTop(), 'visibility': true});
+			}
 		}
+
+		this.getWinner();
 		this.forceUpdate();
 	};
 
 	userHit = () =>  {
 		this.state.user.hand.push({'card': this.deck.popCardFromTop(), 'visibility': true});
 		this.forceUpdate();
-
-		/*//Player and dealer has not gone over 21
-		if(playerValue <= 21 && dealerValue <= 21) {
-            playerValue += (getRandomInt(10) + 1); //number from 0 - 10
-            this.deck.length -= 1;
-            if (playerValue > 21) {
-                playerValue = 'BUST!';
-            }
-            else {
-                console.log(playerValue);
-            }
-            this.forceUpdate();
-        }
-
-        // dealerValue <= 21
-		if(dealerValue <= 21 && playerValue <= 21) {
-			dealerValue += (getRandomInt(10) + 1); //number from 0 - 10
-            this.deck.length -= 1;
-			if (dealerValue > 21) {
-				dealerValue = 'BUST!';
-			}
-			else {
-				console.log(dealerValue);
-			}
-			this.forceUpdate();
-		}*/
 	};
 
-	stay = () =>  {
-		//getWinner();
+	userStay = () =>  {
+		this.state.user.done = true;
+		this.dealerMove();
+	};
+
+	getWinner = () => {
+		if(this.state.user.done && this.state.dealer.done) {
+			if(this.getUserValue() > this.getDealerValue()){
+				this.state.result = 'win';
+				this.addToBalance(this.state.bet*2);
+			} else if(this.getUserValue() < this.getDealerValue()){
+				this.state.result = 'lose';
+				this.addToBalance(-this.state.bet);
+			} else {
+				this.state.result = 'draw';
+				this.addToBalance(this.state.bet);
+			}
+			this.forceUpdate();
+			setTimeout(this.restart(), 5000);
+		}
 	};
 
 	addToBalance = () =>  {
@@ -204,15 +204,7 @@ class Game extends React.Component {
 		this.forceUpdate();
 	};
 
-	renderCard = (card) => {
-		console.log('Keys: ' + Object.keys(card));
-		console.log(ImageMap[card.image_index]);
-		return <img src={ImageMap[card.image_index]} key={ImageMap[card.image_index] + '-' + card} />;
-	};
-
 	render() {
-		let { handleSubmit, submitting } = this.props;
-
 		return (
 			<div className="container padded">
 				<div style = {rowC}>
@@ -221,7 +213,9 @@ class Game extends React.Component {
 				</div>
 				<div className="container padded rounded-50 border-secondary" style={tableStyle}>
 					<br/><br/><br/><br/>
-
+					{this.state.result === 'win' && <div>YOU WIN!!!</div>}
+					{this.state.result === 'lose' && <div>YOU LOST</div>}
+					{this.state.result === 'draw' && <div>DRAW</div>}
 					<h1 style={{fontSize:'300%',color:'white',fontFamily:'Charmonman'}}>PLAYER: {this.getUserValue()}</h1>
 
 					<br/>
@@ -263,7 +257,7 @@ class Game extends React.Component {
 
 				<button className={'btn btn-success'} onClick={this.shuffleDeck}>Shuffle Cards</button>
 				<button className={'btn btn-secondary'} onClick={this.userHit}>Hit</button>
-				<button className={'btn btn-secondary'} onClick={this.stay}>Stay</button>
+				<button className={'btn btn-secondary'} onClick={this.userStay}>Stay</button>
 				<button className={'btn btn-danger'} onClick={this.restart}>Restart</button>
 
 				{this.deck.showDeckImages()}

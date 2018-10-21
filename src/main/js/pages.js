@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import * as Users from 'js/users';
 import * as Login from 'js/login';
 import * as Game from 'js/game';
-import garlicGambler from "../resources/images/garlicgambler.png";
+import garlicGambler from '../resources/images/garlicGambler.png';
 
 const garlicStyle = {
     width: 900,
