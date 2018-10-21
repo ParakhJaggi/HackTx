@@ -9,19 +9,25 @@ import * as Deck from 'js/decks';
 import {Rank, Suit} from 'js/cards';
 import BlackJackTitle from '../resources/images/blackjack.png';
 import CardDeck from '../resources/images/deck_small.png';
+import CardBack from '../resources/images/hit_small.png';
 import * as ReduxForm from 'redux-form';
 import cloth from '../resources/images/poker_cloth.jpg';
+import {ImageMap} from 'js/decks';
 
 const tableStyle = {
 	width: 1000,
 	height: 750,
 	backgroundRepeat: true,
 	backgroundImage: `url(${cloth})`,
-	borderRadius: '20em'
+	borderRadius: '20em',
+	textAlign: 'center',
+	margin: 'auto',
 };
 
-const centerStyle = {textAlign: 'center'};
-
+const centerStyle = {textAlign: 'center', width: '100%'};
+const middleStyle = {verticalAlign: 'middle', height: '100%'};
+const dealeroffset = 0;
+const userOffset = 0;
 var playerValue = 0;
 var dealerValue	= 0;
 const DECK_SIZE = 52;
@@ -29,11 +35,6 @@ const DECK_SIZE = 52;
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
-
-const middleStyle = {verticalAlign: 'middle'};
-const dealeroffset = 0;
-const userOffset = 0;
-
 
 class Game extends React.Component {
 
@@ -55,14 +56,14 @@ class Game extends React.Component {
 		this.state = {
 			dealer: {
 				hand: [
-					{'card': this.deck.popCardFromTop(), 'visibility': 'hide'},
-					{'card': this.deck.popCardFromTop(), 'visibility': 'show'},
+					{'card': this.deck.popCardFromTop(), 'visibility': false},
+					{'card': this.deck.popCardFromTop(), 'visibility': true},
 				]
 			},
 			user: {
 				hand: [
-					{'card': this.deck.popCardFromTop(), 'visibility': 'hide'},
-					{'card': this.deck.popCardFromTop(), 'visibility': 'show'},
+					{'card': this.deck.popCardFromTop(), 'visibility': true},
+					{'card': this.deck.popCardFromTop(), 'visibility': true},
 				]
 			}
 		};
@@ -84,8 +85,40 @@ class Game extends React.Component {
 		this.forceUpdate();
 	};
 
+	getPlayerValue = () => {
+		let total = 0;
+		let numAces = 0;
+		console.log('User hand length: ' + this.state.user.hand.length);
+		for(let c = 0; c < this.state.user.hand.length; c++)	{
+			console.log(Object.values(this.state.user.hand[c]));
+			switch(this.state.user.hand[c].card.rank) {
+				// Face cards
+				case 11:
+				case 12:
+				case 13:
+					total += 10;
+					break;
+				case 1:
+					numAces++;
+					break;
+				default:
+					total += this.state.user.hand[c].card.rank;
+			}
+		}
+		while(numAces-- !== 0){
+			if(total + 11 + numAces <= 21){
+				total += 11;
+			} else total++;
+		}
+
+		return total;
+	};
+
 	hit = () =>  {
-		//Player and dealer has not gone over 21
+		this.state.user.hand.push({'card': this.deck.popCardFromTop(), 'visibility': true});
+		this.forceUpdate();
+		console.log('Player Value: ' + this.getPlayerValue());
+		/*//Player and dealer has not gone over 21
 		if(playerValue <= 21 && dealerValue <= 21) {
             playerValue += (getRandomInt(10) + 1); //number from 0 - 10
             this.deck.length -= 1;
@@ -109,7 +142,7 @@ class Game extends React.Component {
 				console.log(dealerValue);
 			}
 			this.forceUpdate();
-		}
+		}*/
 	};
 
 	stay = () =>  {
@@ -132,6 +165,12 @@ class Game extends React.Component {
 		this.forceUpdate();
 	};
 
+	renderCard = (card) => {
+		console.log('Keys: ' + Object.keys(card));
+		console.log(ImageMap[card.image_index]);
+		return <img src={ImageMap[card.image_index]} key={ImageMap[card.image_index] + '-' + card} />;
+	};
+
 	render() {
 		let { handleSubmit, submitting } = this.props;
 
@@ -140,26 +179,32 @@ class Game extends React.Component {
 				<div style={centerStyle}><img src={BlackJackTitle}/></div>
 
 				<div className="container padded rounded-50 border-secondary" style={tableStyle}>
-					Inside the table.
-					<img src={CardDeck}/>
-
+					<br/><br/><br/><br/><br/><br/>
 					{/*Dealer Hand*/}
-					<div>
-						{_.isDefined(this.state.dealer.hand) &&
-						<div>
-							{
-								this.state.dealer.hand.map((item) =>{
-									{this.deck.renderCard(item.card);}
-								})
-							}
-						</div>
-						}
-
+					{_.isDefined(this.state.dealer.hand) &&
+					<div className={'row align-items-center d-inline'} style={middleStyle}>
+						{this.state.dealer.hand.map(item => (
+								<img src={item.visibility ? ImageMap[item.card.image_index] : CardBack} alt={item.card.getCardName()} key={'img' + item.card.getCardName()}/>
+							)
+						)}
 					</div>
-					{/*Dealer Hand*/}
-					<div>
+					}
+					<br/><br/>
 
+					<div className={'row align-items-center'}>
+						<img src={CardDeck}/>
 					</div>
+
+					<br/><br/>
+					{/*User Hand*/}
+					{_.isDefined(this.state.user.hand) &&
+					<div className={'row align-items-center d-inline'} style={middleStyle}>
+						{this.state.user.hand.map(item => (
+								<img src={item.visibility ? ImageMap[item.card.image_index] : CardBack} alt={item.card.getCardName()} key={'img' + item.card.getCardName()}/>
+							)
+						)}
+					</div>
+					}
 				</div>
 
 				<div>Deck Size: {this.deck.length}</div>
