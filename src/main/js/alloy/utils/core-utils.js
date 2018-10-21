@@ -2,7 +2,7 @@ import _ from 'lodash';
 import * as Redux from 'redux';
 
 let defaultList = val => {
-	if(_.isNil(val)) {
+	if (_.isNil(val)) {
 		return [];
 	}
 
@@ -10,7 +10,7 @@ let defaultList = val => {
 };
 
 let defaultMap = val => {
-	if(_.isNil(val)) {
+	if (_.isNil(val)) {
 		return {};
 	}
 
@@ -18,7 +18,7 @@ let defaultMap = val => {
 };
 
 let defaultString = string => {
-	if(!isDefined(string)) {
+	if (!isDefined(string)) {
 		return '';
 	}
 	return string;
@@ -34,10 +34,10 @@ let isBlank = str => {
 };
 
 let valueAt = (array, index) => {
-	if(!isDefined(array) || !isDefined(index)) {
+	if (!isDefined(array) || !isDefined(index)) {
 		return null;
 	}
-	if(!(array.length > index)) {
+	if (!(array.length > index)) {
 		return null;
 	}
 
@@ -45,7 +45,7 @@ let valueAt = (array, index) => {
 };
 
 let valuate = element => {
-	if(_.isFunction(element)) {
+	if (_.isFunction(element)) {
 		return element();
 	}
 
@@ -63,7 +63,7 @@ let promiseContext = () => {
 	return context;
 };
 
-_.mixin({ defaultList, defaultMap, defaultString, isDefined, isBlank, valueAt, valuate, promiseContext });
+_.mixin({defaultList, defaultMap, defaultString, isDefined, isBlank, valueAt, valuate, promiseContext});
 
 export function extendComponent(field, additionalProps) {
 	let props = {...field.props, ...additionalProps};
@@ -74,7 +74,7 @@ export function combineReducers(rawReducers, initialState = {}) {
 	let reducers = _.map(rawReducers, reducer => _.pickBy(reducer, (value, key) => 'initialize' !== key));
 	let reducerMap = {};
 
-	for(let reducer of reducers) {
+	for (let reducer of reducers) {
 		_.merge(reducerMap, reducer);
 	}
 

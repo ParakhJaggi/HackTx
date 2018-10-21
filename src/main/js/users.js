@@ -37,7 +37,7 @@ State.getUser = state => {
 	return state.user;
 };
 
-export { State };
+export {State};
 
 let Actions = {};
 
@@ -83,7 +83,7 @@ Actions.setUser = user => {
 	return {type: Actions.Types.SET_USER, user};
 };
 
-export { Actions };
+export {Actions};
 
 let Reducers = {};
 
@@ -109,4 +109,4 @@ Reducers.user = (user = null, action) => {
 	}
 };
 
-export { Reducers };
+export {Reducers};

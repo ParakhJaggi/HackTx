@@ -1,7 +1,13 @@
 import React from 'react';
 import cloth from '../resources/images/poker_cloth.jpg';
 
-const tableStyle = {width: 1000, height: 750, backgroundRepeat: true, backgroundImage: `url(${cloth})`, borderRadius: '20em'};
+const tableStyle = {
+	width: 1000,
+	height: 750,
+	backgroundRepeat: true,
+	backgroundImage: `url(${cloth})`,
+	borderRadius: '20em'
+};
 
 class Table extends React.Component {
 	constructor(props) {
@@ -17,4 +23,4 @@ class Table extends React.Component {
 	}
 }
 
-export { Table };
+export {Table};

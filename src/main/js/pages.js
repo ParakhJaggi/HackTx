@@ -1,8 +1,8 @@
 import _ from 'lodash';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import * as Users from 'js/users';
 import * as Login from 'js/login';
 import * as Game from 'js/game';
@@ -31,8 +31,8 @@ export class RegisterPage extends React.Component {
 				<div className="row">
 					<div className="col-6 offset-md-3">
 						<h2>Register</h2>
-						<hr />
-						<Login.RegistrationForm />
+						<hr/>
+						<Login.RegistrationForm/>
 						<div className="text-center">
 							<a className="d-block small" href="/#/login">Login</a>
 
@@ -52,8 +52,8 @@ export class LoginPage extends React.Component {
 				<div className="row">
 					<div className="col-6 offset-md-3">
 						<h2>Login</h2>
-						<hr />
-						<Login.LoginForm />
+						<hr/>
+						<Login.LoginForm/>
 						<div className="text-center">
 							<a className="d-block small" href="/#/page-1">Play Game</a>
 
@@ -72,11 +72,11 @@ class Page1 extends React.Component {
 			<div className="container padded">
 				This is page 1.
 
-				{ _.isDefined(this.props.authentication) &&
+				{_.isDefined(this.props.authentication) &&
 				<div>{this.props.authentication['access_token']}</div>
 				}
 
-				{ _.isDefined(this.props.user) &&
+				{_.isDefined(this.props.user) &&
 				<div>Welcome, {this.props.user.principal}!</div>
 				}
 			</div>
@@ -91,13 +91,13 @@ Page1 = connect(
 	})
 )(Page1);
 
-export { Page1 };
+export {Page1};
 
 export class GamePage extends React.Component {
 	render() {
 		return (
 			<div className="container padded">
-				<Game.Game />
+				<Game.Game/>
 			</div>
 		);
 	}

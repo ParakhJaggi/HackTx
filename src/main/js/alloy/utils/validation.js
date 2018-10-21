@@ -11,7 +11,7 @@ let Spec = {};
 
 Spec.makeOptional = spec => val => _.isEmpty(val) ? true : spec(val);
 
-export { Spec };
+export {Spec};
 
 export const required = value => !!value;
 export const requiredValidator = new Validator(required, (details) => details.friendlyName + ' is required.');

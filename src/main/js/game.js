@@ -1,8 +1,8 @@
 import _ from 'lodash';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import * as Users from 'js/users';
 import * as Deck from 'js/decks';
 import * as Table from 'js/table';
@@ -13,7 +13,7 @@ import CardDeck from '../resources/images/blackjack.png';
 
 const ImageMap = [Images.AceClubs, Images.TwoClubs, Images.ThreeClubs, Images.FourClubs, Images.FiveClubs, Images.SixClubs, Images.SevenClubs, Images.EightClubs, Images.NineClubs, Images.TenClubs, Images.JackClubs, Images.QueenClubs, Images.KingClubs, Images.AceHearts, Images.TwoHearts, Images.ThreeHearts, Images.FourHearts, Images.FiveHearts, Images.SixHearts, Images.SevenHearts, Images.EightHearts, Images.NineHearts, Images.TenHearts, Images.JackHearts, Images.QueenHearts, Images.KingHearts, Images.AceDiamonds, Images.TwoDiamonds, Images.ThreeDiamonds, Images.FourDiamonds, Images.FiveDiamonds, Images.SixDiamonds, Images.SevenDiamonds, Images.EightDiamonds, Images.NineDiamonds, Images.TenDiamonds, Images.JackDiamonds, Images.QueenDiamonds, Images.KingDiamonds, Images.AceSpades, Images.TwoSpades, Images.ThreeSpades, Images.FourSpades, Images.FiveSpades, Images.SixSpades, Images.SevenSpades, Images.EightSpades, Images.NineSpades, Images.TenSpades, Images.JackSpades, Images.QueenSpades, Images.KingSpades];
 
-const centerStyle = {textAlign:'center'};
+const centerStyle = {textAlign: 'center'};
 
 class Game extends React.Component {
 	constructor() {
@@ -46,13 +46,11 @@ class Game extends React.Component {
 }
 
 Game = connect(
-	state => ({
-
-	}),
+	state => ({}),
 	dispatch => ({
 		register: user => dispatch(Users.Actions.register(user))
 	})
 )(Game);
 
-export { Game };
+export {Game};
 
