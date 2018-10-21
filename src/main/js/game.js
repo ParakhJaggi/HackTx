@@ -21,14 +21,36 @@ const tableStyle = {
 };
 
 const centerStyle = {textAlign: 'center'};
+
+var playerValue = 0;
+var dealerValue	= 0;
+const DECK_SIZE = 52;
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
 const middleStyle = {verticalAlign: 'middle'};
 const dealeroffset = 0;
 const userOffset = 0;
 
+
 class Game extends React.Component {
+
 	constructor(props) {
 		super(props);
 		this.deck = new Deck.Deck();
+		this.deck.length = DECK_SIZE;
+		console.log('DECK SIZE ' + this.deck.size());
+		// this.state = {
+		// 	dealer: {
+		// 		hand: [],
+		// 	},
+		// 	user: {
+		// 		hand: [],
+		// 		balance: 0,
+		// 	}
+		// };
 		this.deck.shuffle();
 		this.state = {
 			dealer: {
@@ -53,15 +75,45 @@ class Game extends React.Component {
 	};
 
 	restart = () =>  {
+		console.log("Restarting game");
+		playerValue = 0;
+		dealerValue = 0;
 		this.deck = new Deck.Deck();
+        this.deck.length = DECK_SIZE;
+		this.deck.shuffle();
 		this.forceUpdate();
 	};
 
 	hit = () =>  {
+		//Player and dealer has not gone over 21
+		if(playerValue <= 21 && dealerValue <= 21) {
+            playerValue += (getRandomInt(10) + 1); //number from 0 - 10
+            this.deck.length -= 1;
+            if (playerValue > 21) {
+                playerValue = "BUST!";
+            }
+            else {
+                console.log(playerValue);
+            }
+            this.forceUpdate();
+        }
 
+        // dealerValue <= 21
+		if(dealerValue <= 21 && playerValue <= 21) {
+			dealerValue += (getRandomInt(10) + 1); //number from 0 - 10
+            this.deck.length -= 1;
+			if (dealerValue > 21) {
+				dealerValue = "BUST!";
+			}
+			else {
+				console.log(dealerValue);
+			}
+			this.forceUpdate();
+		}
 	};
 
 	stay = () =>  {
+
 
 	};
 
@@ -110,13 +162,16 @@ class Game extends React.Component {
 					</div>
 				</div>
 
-				<div>Deck Size: {this.deck.size()}</div>
+				<div>Deck Size: {this.deck.length}</div>
 				<div>Full deck of cards...</div>
 
 				<button className={'btn btn-primary'} onClick={this.addToBalance}>Add 10 to Balance</button>
 				<br/>
 				BALANCE: {this.props.user.balance}
 				<br/>
+				PLAYER: {playerValue}
+				<br/>
+				DEALER: {dealerValue}
 				<button className={'btn btn-success'} onClick={this.popCard}>POP Card</button>
 				<br/>
 
