@@ -19,9 +19,10 @@ export let RankToWord = ['Zero', 'Ace', 'Two', 'Three', 'Four', 'Five', 'Six', '
 export let SuitToWord = ['Zero', 'Diamonds', 'Clubs', 'Hearts', 'Spades'];
 
 export class Card {
-	constructor(rank, suit) {
+	constructor(rank, suit, image_index) {
 		this.rank = rank;
 		this.suit = suit;
+		this.image_index = image_index;
 	}
 
 	getCardName = () => {

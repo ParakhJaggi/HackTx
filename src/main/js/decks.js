@@ -9,17 +9,23 @@ let Suit = Cards.Suit;
 let card = Cards.Card;
 
 export class Deck {
-	constructor() {
-		this.deck = [];
-		this.imageIndex = [];
+    constructor() {
+        this.deck = [];
 
-		for (let i in Suit) {
-			for (let j in Rank) {
-				let imageIndex = i + j;
-				this.deck.push(new card(Rank[j], Suit[i]));
+		for (let i = 0; i < Suit.length; i++) {
+			for (let j = 0; j < Rank.length; j++) {
+				let imageIndex = i+j;
+				this.deck.push(new card(Rank[j], Suit[i], imageIndex));
 			}
 		}
-	}
+
+		// for (let i in Suit) {
+		// 	for (let j in Rank) {
+		// 		let imageIndex = i+j;
+		// 		this.deck.push(new card(Rank[j], Suit[i], imageIndex));
+		// 	}
+		// }
+    }
 
 	size = () => {
 		return this.deck.length;
@@ -38,8 +44,9 @@ export class Deck {
 
 	showDeckImages = () => {
 		let images = [];
-		for (let i in ImageMap) {
-			images.push(<img src={ImageMap[i]} key={ImageMap[i] + '-' + i}/>);
+		for (let card in this.deck) {
+			console.log(this.deck[card].image_index);
+			images.push(<img src={ImageMap[this.deck[card].image_index]} key={ImageMap[this.deck[card].image_index] + '-' + card} />);
 		}
 		return images;
 	};
