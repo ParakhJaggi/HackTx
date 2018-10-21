@@ -14,39 +14,29 @@ import alloy.util.Momento;
 public class UserDto implements Momento<String> {
 	private String principal;
 
-	public double getBalance() {
+	public Double getBalance() {
 		return balance;
 	}
 
-	public void setBalance(double balance) {
+	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
 
-	double balance;
-
+	private Double balance;
 
 	private UserDto() {
 
 	}
 
-	public UserDto(String principal) {
+	public UserDto(String principal, Double balance) {
 		this.principal = principal;
-
-	}
-
-	public UserDto(String principal, List<String> roles) {
-		this.principal = principal;
+		this.balance = balance;
 	}
 
 
 	public String getPrincipal() {
 		return principal;
 	}
-
-
-
-
-
 
 	@JsonIgnore
 	@Override

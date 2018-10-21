@@ -59,6 +59,8 @@ class Game extends React.Component {
 	}
 
 	restart = () =>  {
+		this.deck = new Deck.Deck();
+		this.forceUpdate();
 
 	};
 
@@ -87,12 +89,13 @@ class Game extends React.Component {
 				<div style={centerStyle}><img src={BlackJackTitle}/></div>
 
 				<Table.Table/>
-				<Bessemer.Button>click me</Bessemer.Button>
 
 				<div>Deck Size: {this.deck.size()}</div>
 				<div>Full deck of cards...</div>
 
 				<button className={'btn btn-primary'} onClick={this.addToBalance}>Add 10 to Balance</button>
+				<br/>
+				BALANCE: {this.props.user.balance}
 				<br/>
 
 				<button className={'btn btn-success'} onClick={this.shuffleDeck}>Shuffle Cards</button>
