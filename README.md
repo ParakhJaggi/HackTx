@@ -1,4 +1,4 @@
-# Garlic Gambler
+# [Garlic Gambler](https://github.com/ParakhJaggi/HackTx)
 This is a web based blackjack game called Garlic Gambler. Users can play against the house in blackjack and bet with Garlicoin.
 
 This web application was made during HackTX 2018.
