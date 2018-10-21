@@ -12,6 +12,7 @@ import CardDeck from '../resources/images/deck_small.png';
 import CardBack from '../resources/images/hit_small.png';
 import * as ReduxForm from 'redux-form';
 import cloth from '../resources/images/poker_cloth.jpg';
+import garlicGambler from '../resources/images/garlicGambler.png';
 import {ImageMap} from 'js/decks';
 
 const tableStyle = {
@@ -24,7 +25,21 @@ const tableStyle = {
 	margin: 'auto',
 };
 
-const centerStyle = {textAlign: 'center', width: '100%'};
+const garlicStyle = {
+	width: 200,
+	height: 200,
+	backgroundImage: `url(${garlicGambler})`,
+	margin: 'auto',
+	textAlign: 'center',
+	paddingRight: 0,
+	borderRight: 0
+};
+
+const rowC = {
+	display: 'flex'
+};
+
+const centerStyle = {textAlign: 'center', width: '100%', paddingLeft: 0, borderLeft: 0};
 const middleStyle = {verticalAlign: 'middle', height: '100%'};
 const dealeroffset = 0;
 const userOffset = 0;
@@ -201,10 +216,17 @@ class Game extends React.Component {
 
 		return (
 			<div className="container padded">
-				<div style={centerStyle}><img src={BlackJackTitle}/></div>
-
+				<div style = {rowC}>
+					<div><img src={garlicGambler} style={garlicStyle}/></div>
+					<div style={centerStyle}><img src={BlackJackTitle}/></div>
+				</div>
 				<div className="container padded rounded-50 border-secondary" style={tableStyle}>
-					<br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/>
+
+					<h1 style={{fontSize:'300%',color:'white',fontFamily:'Charmonman'}}>PLAYER: {this.getUserValue()}</h1>
+
+					<br/>
+					<br/><br/>
 					{/*Dealer Hand*/}
 					{_.isDefined(this.state.dealer.hand) &&
 					<div className={'row align-items-center d-inline'} style={middleStyle}>
@@ -236,9 +258,7 @@ class Game extends React.Component {
 				<br/>
 				BALANCE: {this.props.user.balance}
 				<br/>
-				PLAYER: {this.getUserValue()}
 				<br/>
-				DEALER: {this.getDealerValue()}
 				<button className={'btn btn-success'} onClick={this.popCard}>POP Card</button>
 				<br/>
 
