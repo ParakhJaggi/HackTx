@@ -65,7 +65,6 @@ class Game extends React.Component {
 				<div style={centerStyle}><img src={BlackJackTitle}/></div>
 
 				<Table.Table/>
-				<Bessemer.Button>click me</Bessemer.Button>
 
 				<div>Deck Size: {this.deck.size()}</div>
 				<div>Full deck of cards...</div>
