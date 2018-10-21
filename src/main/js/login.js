@@ -7,6 +7,7 @@ import * as Bessemer from 'js/alloy/bessemer/components';
 
 import * as Users from 'js/users';
 
+//Class for login page
 class LoginForm extends React.Component {
 	onSubmit = ({principal, password}) => {
 		return this.props.authenticate(principal, password);
