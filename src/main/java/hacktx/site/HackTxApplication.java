@@ -12,5 +12,3 @@ public class HackTxApplication {
 		SpringApplication.run(HackTxApplication.class, args);
 	}
 }
-
-//Hello
