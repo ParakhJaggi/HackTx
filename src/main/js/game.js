@@ -74,7 +74,7 @@ class Game extends React.Component {
 				<div style={centerStyle}><img src={BlackJackTitle}/></div>
 
 				<div className="container padded rounded-50 border-secondary" style={tableStyle}>
-					Inside the table.
+
 				</div>
 
 				<div>Deck Size: {this.deck.size()}</div>
