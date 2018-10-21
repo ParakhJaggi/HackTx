@@ -194,7 +194,12 @@ class Game extends React.Component {
 				<div style={centerStyle}><img src={BlackJackTitle}/></div>
 
 				<div className="container padded rounded-50 border-secondary" style={tableStyle}>
-					<br/><br/><br/><br/><br/><br/>
+					<br/><br/><br/><br/>
+
+					<h1 style={{fontSize:'300%',color:'white',fontFamily:'Charmonman'}}>PLAYER: {this.getUserValue()}</h1>
+
+					<br/>
+					<br/><br/>
 					{/*Dealer Hand*/}
 					{_.isDefined(this.state.dealer.hand) &&
 					<div className={'row align-items-center d-inline'} style={middleStyle}>
@@ -226,9 +231,7 @@ class Game extends React.Component {
 				<br/>
 				BALANCE: {this.props.user.balance}
 				<br/>
-				PLAYER: {this.getUserValue()}
 				<br/>
-				DEALER: {this.getDealerValue()}
 				<button className={'btn btn-success'} onClick={this.popCard}>POP Card</button>
 				<br/>
 
