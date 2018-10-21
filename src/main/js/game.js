@@ -8,7 +8,7 @@ import * as Users from 'js/users';
 import * as Deck from 'js/decks';
 import {Rank, Suit} from 'js/cards';
 import BlackJackTitle from '../resources/images/blackjack.png';
-import CardDeck from '../resources/images/blackjack.png';
+import CardDeck from '../resources/images/deck_small.png';
 import * as ReduxForm from 'redux-form';
 import cloth from '../resources/images/poker_cloth.jpg';
 
@@ -21,8 +21,6 @@ const tableStyle = {
 };
 
 const centerStyle = {textAlign: 'center'};
-// var playerTurn = true;
-// var computerTurn = false;
 
 var playerValue = 0;
 var dealerValue	= 0;
@@ -31,6 +29,11 @@ const DECK_SIZE = 52;
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
+
+const middleStyle = {verticalAlign: 'middle'};
+const dealeroffset = 0;
+const userOffset = 0;
+
 
 class Game extends React.Component {
 
@@ -48,6 +51,21 @@ class Game extends React.Component {
 		// 		balance: 0,
 		// 	}
 		// };
+		this.deck.shuffle();
+		this.state = {
+			dealer: {
+				hand: [
+					{'card': this.deck.popCardFromTop(), 'visibility': 'hide'},
+					{'card': this.deck.popCardFromTop(), 'visibility': 'show'},
+				]
+			},
+			user: {
+				hand: [
+					{'card': this.deck.popCardFromTop(), 'visibility': 'hide'},
+					{'card': this.deck.popCardFromTop(), 'visibility': 'show'},
+				]
+			}
+		};
 	}
 
 	shuffleDeck = () => {
@@ -64,7 +82,6 @@ class Game extends React.Component {
         this.deck.length = DECK_SIZE;
 		this.deck.shuffle();
 		this.forceUpdate();
-
 	};
 
 	hit = () =>  {
@@ -108,6 +125,13 @@ class Game extends React.Component {
 		console.log('Balance after update: ' + u.balance);
 	};
 
+	popCard = () => {
+		let c = this.deck.popCardFromTop();
+		console.log('Got card: ' + c.toString());
+		console.log('New Deck Size: ' + this.deck.size());
+		this.forceUpdate();
+	};
+
 	render() {
 		let { handleSubmit, submitting } = this.props;
 
@@ -117,6 +141,25 @@ class Game extends React.Component {
 
 				<div className="container padded rounded-50 border-secondary" style={tableStyle}>
 					Inside the table.
+					<img src={CardDeck}/>
+
+					{/*Dealer Hand*/}
+					<div>
+						{_.isDefined(this.state.dealer.hand) &&
+						<div>
+							{
+								this.state.dealer.hand.map((item) =>{
+									{this.deck.renderCard(item.card);}
+								})
+							}
+						</div>
+						}
+
+					</div>
+					{/*Dealer Hand*/}
+					<div>
+
+					</div>
 				</div>
 
 				<div>Deck Size: {this.deck.length}</div>
@@ -129,6 +172,7 @@ class Game extends React.Component {
 				PLAYER: {playerValue}
 				<br/>
 				DEALER: {dealerValue}
+				<button className={'btn btn-success'} onClick={this.popCard}>POP Card</button>
 				<br/>
 
 				<button className={'btn btn-success'} onClick={this.shuffleDeck}>Shuffle Cards</button>

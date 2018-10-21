@@ -33,7 +33,7 @@ export class Deck {
 					}
 				}
 
-				console.log(imageIndex);
+				//console.log(imageIndex);
 				this.deck.push(new card(Rank[j], Suit[i], imageIndex));
 				jIndex++;
 			}
@@ -47,6 +47,12 @@ export class Deck {
 
 	contains = (card) => {
 		return this.deck.indexOf(card) >= 0;
+	};
+
+	popCardFromTop = () => {
+		let card = this.deck[0];
+		this.deck.splice(0, 1);
+		return card;
 	};
 
 	shuffle = () => {
@@ -63,5 +69,9 @@ export class Deck {
 			images.push(<img src={ImageMap[this.deck[card].image_index]} key={ImageMap[this.deck[card].image_index] + '-' + card} />);
 		}
 		return images;
+	};
+
+	renderCard = (card) => {
+		return <img src={ImageMap[card.image_index]} key={ImageMap[card.image_index] + '-' + card} />;
 	};
 }
