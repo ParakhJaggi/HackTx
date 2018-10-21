@@ -31,8 +31,8 @@ web:
     css-bundle-location: /statics/hacktx-site.css
 
 elastic-search:
-  host: set me
-  port: set me
-  scheme: set me
-  user-name: set me
-  password: set me
+  host: olive-6984281.us-east-1.bonsaisearch.net
+  port: 443
+  scheme: https
+  user-name: jawaojy5a2
+  password: 8udzze6p34
