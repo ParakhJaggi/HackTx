@@ -53,8 +53,7 @@ class Game extends React.Component {
 	addToBalance = () =>  {
 		let u = this.props.user;
 		console.log('Balance before update: ' + u.balance);
-		this.props.updateBalance(10);
-		setTimeout(this.forceUpdate, 1500);
+		this.props.updateBalance(10).then(this.forceUpdate());
 		u = this.props.user;
 		console.log('Balance after update: ' + u.balance);
 	};
