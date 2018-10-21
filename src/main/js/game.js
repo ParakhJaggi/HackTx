@@ -8,7 +8,7 @@ import * as Users from 'js/users';
 import * as Deck from 'js/decks';
 import {Rank, Suit} from 'js/cards';
 import BlackJackTitle from '../resources/images/blackjack.png';
-import CardDeck from '../resources/images/blackjack.png';
+import CardDeck from '../resources/images/deck_small.jpg';
 import * as ReduxForm from 'redux-form';
 import cloth from '../resources/images/poker_cloth.jpg';
 
@@ -21,21 +21,29 @@ const tableStyle = {
 };
 
 const centerStyle = {textAlign: 'center'};
+const middleStyle = {verticalAlign: 'middle'};
+const dealeroffset = 0;
+const userOffset = 0;
 
 class Game extends React.Component {
 	constructor(props) {
 		super(props);
 		this.deck = new Deck.Deck();
-		console.log('DECK SIZE ' + this.deck.size());
-		// this.state = {
-		// 	dealer: {
-		// 		hand: [],
-		// 	},
-		// 	user: {
-		// 		hand: [],
-		// 		balance: 0,
-		// 	}
-		// };
+		this.deck.shuffle();
+		this.state = {
+			dealer: {
+				hand: [
+					{'card': this.deck.popCardFromTop(), 'visibility': 'hide'},
+					{'card': this.deck.popCardFromTop(), 'visibility': 'show'},
+				]
+			},
+			user: {
+				hand: [
+					{'card': this.deck.popCardFromTop(), 'visibility': 'hide'},
+					{'card': this.deck.popCardFromTop(), 'visibility': 'show'},
+				]
+			}
+		};
 	}
 
 	shuffleDeck = () => {
@@ -47,7 +55,6 @@ class Game extends React.Component {
 	restart = () =>  {
 		this.deck = new Deck.Deck();
 		this.forceUpdate();
-
 	};
 
 	hit = () =>  {
@@ -66,6 +73,13 @@ class Game extends React.Component {
 		console.log('Balance after update: ' + u.balance);
 	};
 
+	popCard = () => {
+		let c = this.deck.popCardFromTop();
+		console.log('Got card: ' + c.toString());
+		console.log('New Deck Size: ' + this.deck.size());
+		this.forceUpdate();
+	};
+
 	render() {
 		let { handleSubmit, submitting } = this.props;
 
@@ -74,8 +88,26 @@ class Game extends React.Component {
 				<div style={centerStyle}><img src={BlackJackTitle}/></div>
 
 				<div className="container padded rounded-50 border-secondary" style={tableStyle}>
+					Inside the table.
+					<img src={CardDeck}/>
 
+					{/*Dealer Hand*/}
+					<div>
+						{_.isDefined(this.state.dealer.hand) &&
+						<div>
+							{
+								this.state.dealer.hand.map((item) =>{
+									{this.deck.renderCard(item.card);}
+								})
+							}
+						</div>
+						}
 
+					</div>
+					{/*Dealer Hand*/}
+					<div>
+
+					</div>
 				</div>
 
 				<div>Deck Size: {this.deck.size()}</div>
@@ -84,6 +116,8 @@ class Game extends React.Component {
 				<button className={'btn btn-primary'} onClick={this.addToBalance}>Add 10 to Balance</button>
 				<br/>
 				BALANCE: {this.props.user.balance}
+				<br/>
+				<button className={'btn btn-success'} onClick={this.popCard}>POP Card</button>
 				<br/>
 
 				<button className={'btn btn-success'} onClick={this.shuffleDeck}>Shuffle Cards</button>
