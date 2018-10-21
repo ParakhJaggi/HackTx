@@ -8,7 +8,7 @@ import * as Users from 'js/users';
 import * as Deck from 'js/decks';
 import {Rank, Suit} from 'js/cards';
 import BlackJackTitle from '../resources/images/blackjack.png';
-import CardDeck from '../resources/images/deck_small.jpg';
+import CardDeck from '../resources/images/deck_small.png';
 import * as ReduxForm from 'redux-form';
 import cloth from '../resources/images/poker_cloth.jpg';
 
