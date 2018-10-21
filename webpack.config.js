@@ -28,8 +28,11 @@ const config = {
 				exclude: /node_modules/
 			}, {
 				test: /.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|ico|eot)$/,
-				use: "url-loader?limit=100000"
-			}]
+				use: "url-loader?limit=8192"
+			}],
+		loaders: [
+			{ test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }
+		]
 	},
 	resolve: {
 		alias: {
