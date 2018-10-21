@@ -19,13 +19,22 @@ class Game extends React.Component {
 	constructor() {
 		super();
 		this.deck = new Deck.Deck();
+		this.state = {
+			dealer: {
+				hand: [],
+			},
+			user: {
+				hand: [],
+				balance: 0,
+			}
+		};
 	}
 
 	shuffleDeck () {
 		console.log('Shuffling deck...');
 		this.deck.shuffle();
 		this.forceUpdate();
-	};
+	}
 
 	restart() {
 
@@ -59,13 +68,6 @@ class Game extends React.Component {
 		);
 	}
 }
-
-Game = connect(
-	state => ({}),
-	dispatch => ({
-		register: user => dispatch(Users.Actions.register(user))
-	})
-)(Game);
 
 export {Game};
 
