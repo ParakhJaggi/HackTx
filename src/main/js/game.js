@@ -75,6 +75,7 @@ class Game extends React.Component {
 
 				<div className="container padded rounded-50 border-secondary" style={tableStyle}>
 
+
 				</div>
 
 				<div>Deck Size: {this.deck.size()}</div>
