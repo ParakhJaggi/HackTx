@@ -12,7 +12,7 @@ import CardDeck from '../resources/images/deck_small.png';
 import CardBack from '../resources/images/hit_small.png';
 import * as ReduxForm from 'redux-form';
 import cloth from '../resources/images/poker_cloth.jpg';
-import garlicGambler from '../resources/images/garlicGambler.png'
+import garlicGambler from '../resources/images/garlicGambler.png';
 import {ImageMap} from 'js/decks';
 
 const tableStyle = {
