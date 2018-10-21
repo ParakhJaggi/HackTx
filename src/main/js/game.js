@@ -41,17 +41,6 @@ class Game extends React.Component {
 	constructor(props) {
 		super(props);
 		this.deck = new Deck.Deck();
-		this.deck.length = DECK_SIZE;
-		console.log('DECK SIZE ' + this.deck.size());
-		// this.state = {
-		// 	dealer: {
-		// 		hand: [],
-		// 	},
-		// 	user: {
-		// 		hand: [],
-		// 		balance: 0,
-		// 	}
-		// };
 		this.deck.shuffle();
 		this.state = {
 			dealer: {
@@ -59,12 +48,14 @@ class Game extends React.Component {
 					{'card': this.deck.popCardFromTop(), 'visibility': false},
 					{'card': this.deck.popCardFromTop(), 'visibility': true},
 				],
+				done: false
 			},
 			user: {
 				hand: [
 					{'card': this.deck.popCardFromTop(), 'visibility': true},
 					{'card': this.deck.popCardFromTop(), 'visibility': true},
-				]
+				],
+				done: false
 			}
 		};
 	}
@@ -80,9 +71,28 @@ class Game extends React.Component {
 		playerValue = 0;
 		dealerValue = 0;
 		this.deck = new Deck.Deck();
-        this.deck.length = DECK_SIZE;
 		this.deck.shuffle();
+		this.state = {
+			dealer: {
+				hand: [
+					{'card': this.deck.popCardFromTop(), 'visibility': false},
+					{'card': this.deck.popCardFromTop(), 'visibility': true},
+				],
+				done: false
+			},
+			user: {
+				hand: [
+					{'card': this.deck.popCardFromTop(), 'visibility': true},
+					{'card': this.deck.popCardFromTop(), 'visibility': true},
+				],
+				done: false
+			}
+		};
 		this.forceUpdate();
+	};
+
+	getWinner = () => {
+
 	};
 
 	getValue = (player) => {
@@ -133,7 +143,7 @@ class Game extends React.Component {
 	userHit = () =>  {
 		this.state.user.hand.push({'card': this.deck.popCardFromTop(), 'visibility': true});
 		this.forceUpdate();
-		
+
 		/*//Player and dealer has not gone over 21
 		if(playerValue <= 21 && dealerValue <= 21) {
             playerValue += (getRandomInt(10) + 1); //number from 0 - 10
@@ -162,7 +172,7 @@ class Game extends React.Component {
 	};
 
 	stay = () =>  {
-
+		//getWinner();
 	};
 
 	addToBalance = () =>  {

@@ -1,11 +1,20 @@
-# Readme
-This is the hacktx sample application.
+# Garlic Gambler
+This is a web based blackjack game called Garlic Gambler. Users can play against the house in blackjack and bet with Garlicoin.
 
-## Elastic Search
-This application uses elastic search as a data backend. To run the app you will have to either install elastic search locally or point to a remote elastic search instance. Configuration options are provided in `application.yml`.
+This web application was made during HackTX 2018.
 
-## Development
-In development there are three components to the running application. A Java app server, which runs your backend code, elasticsearch, which is the data store, and a webpack development server which serves up the frontend resources and does hot reloading.
+Tech stack: Node.js, React, Java, and Elasticsearch.
+
+Made by (GitHub links):
+ * [Sean Blonien](https://github.com/sblonien)
+ * [Parakh Jaggi](https://github.com/ParakhJaggi)
+ * [Neil Wilcoxson](https://github.com/neilwilcoxson)
+ * [Mark Du](https://github.com/mdu2017)
+ * [Caleb Dehaan](https://github.com/calebdehaan)
+
+ 
+## To Run the App Locally
+There are three components to the running application. A Java app server, which runs your backend code, elasticsearch, which is the data store, and a webpack development server which serves up the frontend resources and does hot reloading.
 
 ### Running the Backend in IntelliJ
 1) Install Java, Gradle, IntelliJ if you don't already have them
@@ -19,19 +28,12 @@ In development there are three components to the running application. A Java app
 1) Go to `http://localhost:8080/` and verify the application is running (you may see a blank page if the frontend isn't running yet, but if it doesn't 404 you are good)
 
 ### Running elasticsearch
-1) Install elasticsearch 6.0.1 https://www.elastic.co/downloads/past-releases/elasticsearch-6-0-1
+1) Install elasticsearch 6.4.2
 2) Run `elasticsearch` and confirm it started with `curl -XGET 'localhost:9200'`
 
 ### Running the Frontend
 1) Install node if you don't already have it
 1) In the project directory run `npm install` from the command line
 1) In the project directory run `npm run dev` from the command line
-1) Go to `http://localhost:8080/` - you should see simple output which reads "This is the home page."
-1) Navigate to page 1 and click the "Login as User" button - you should see a token print and the text "Welcome, user!" show on the page. This means everything is working.
-
-## QA/Heroku/Running as QA Locally
-In qa there is just a single executable jar which contains the static resources produced from webpack.
-
-1) To build run `gradle install`
-1) Build output can be found in `<Root Project Dir>/build/libs/hacktx-site-1.0-SNAPSHOT.jar`
-1) This jar is all you need to run the application, to run locally use the following command: `java -jar build/libs/hacktx-site-1.0-SNAPSHOT.jar --spring.profiles.active=qa`
+1) Go to `http://localhost:8080/`
+1) The website is good to go! If you followed every step so far without errors, this will work!
