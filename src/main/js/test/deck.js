@@ -1,11 +1,11 @@
 
-var decks = require('../decks');
-var cards = require('../cards');
-var Suit = cards.Suit;
-var Rank = cards.Rank;
+let decks = require('../decks');
+let cards = require('../cards');
+let Suit = cards.Suit;
+let Rank = cards.Rank;
 
 exports['create deck with 52 cards'] = function (test) {
-    var deck = decks.deck();
+    let deck = decks.deck();
     
     test.ok(deck);
     test.equal(typeof deck, 'object');
@@ -13,15 +13,15 @@ exports['create deck with 52 cards'] = function (test) {
 };
 
 exports['check card existence'] = function (test) {
-    var deck = decks.deck();
+    let deck = decks.deck();
     
     test.ok(deck);
     
-    for (var n1 in Suit) {
-        var s = Suit[n1];
+    for (let n1 in Suit) {
+        let s = Suit[n1];
         
-        for (var n2 in Rank) {
-            var r = Rank[n2];
+        for (let n2 in Rank) {
+            let r = Rank[n2];
             
             test.ok(deck.contains(cards.card(r, s)));
         }

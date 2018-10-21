@@ -1,30 +1,53 @@
 
-var cards = require('./cards');
-var Rank = cards.Rank;
-var Suit = cards.Suit;
+import * as Cards from 'js/cards';
+import React from 'react';
+let Rank = Cards.Rank;
+let Suit = Cards.Suit;
+let card = Cards.Card;
 
-function Deck() {
-    var deck = [];
+export class Deck {
+    constructor() {
+        this.deck = [];
 
-    for (var n1 in Suit) {
-        var s = Suit[n1];
-        
-        for (var n2 in Rank) {
-            var r = Rank[n2];
-            
-            deck.push(cards.card(r, s));
-        }
+		for (let n1 in Suit) {
+			let s = Suit[n1];
+			for (let n2 in Rank) {
+				let r = Rank[n2];
+				this.deck.push(new card(r, s));
+			}
+		}
     }
-        
-    this.size = function () { return deck.length; };
+
+    size = () => {
+        return this.deck.length;
+    };
     
-    this.contains = function (card) { return deck.indexOf(card) >= 0; };
-}
+    contains = (card) => {
+        return this.deck.indexOf(card) >= 0;
+    };
 
-function createDeck() {
-    return new Deck();
-}
+    shuffle = () => {
+		for (let i = this.deck.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
+		}
+    };
 
-module.exports = {
-    deck: createDeck
-};
+    printCards = () => {
+        let result = '';
+        if(this.deck !== null && this.deck.length > 0) {
+			for (let i = 0; i < this.deck.length; i++) {
+				console.log(this.deck[i]);
+				//result =  result + this.deck[i].rank + ' ' + this.deck[i].suit + ', ';
+				result = result + this.deck[i].getCardPath() + '\r\n';
+			}
+			return result;// return Object.values(this.deck)
+		}
+    };
+
+	printCard = () => {
+		if(this.deck !== null && this.deck.length > 0) {
+			return this.deck[0].getCardPath();
+		}
+	};
+}
