@@ -85,24 +85,26 @@ class Game extends React.Component {
 		this.forceUpdate();
 	};
 
-	getPlayerValue = () => {
+	getValue = (player) => {
 		let total = 0;
 		let numAces = 0;
-		console.log('User hand length: ' + this.state.user.hand.length);
-		for(let c = 0; c < this.state.user.hand.length; c++)	{
-			console.log(Object.values(this.state.user.hand[c]));
-			switch(this.state.user.hand[c].card.rank) {
+		console.log('Player hand length: ' + player.hand.length);
+		for(let c = 0; c < player.hand.length; c++)	{
+			console.log(Object.values(player.hand[c]));
+			switch(player.hand[c].card.rank) {
 				// Face cards
 				case 11:
 				case 12:
 				case 13:
 					total += 10;
 					break;
+				// Ace
 				case 1:
 					numAces++;
 					break;
+				// Everything else
 				default:
-					total += this.state.user.hand[c].card.rank;
+					total += player.hand[c].card.rank;
 			}
 		}
 		while(numAces-- !== 0){
@@ -112,6 +114,13 @@ class Game extends React.Component {
 		}
 
 		return total;
+	};
+
+	getUserValue = () => {
+		return this.getValue(this.state.user);
+	};
+	getDealerValue = () =>{
+		return this.getValue(this.state.dealer);
 	};
 
 	hit = () =>  {
@@ -214,9 +223,9 @@ class Game extends React.Component {
 				<br/>
 				BALANCE: {this.props.user.balance}
 				<br/>
-				PLAYER: {playerValue}
+				PLAYER: {this.getUserValue()}
 				<br/>
-				DEALER: {dealerValue}
+				DEALER: {this.getDealerValue()}
 				<button className={'btn btn-success'} onClick={this.popCard}>POP Card</button>
 				<br/>
 
