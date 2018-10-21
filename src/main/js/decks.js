@@ -12,7 +12,7 @@ export class Deck {
     constructor() {
         this.deck = [];
 
-		console.log('Constructing ccard deck...');
+		console.log('Constructing card deck...');
 
 		let iIndex = 0;
 		for (let i in Suit) {
