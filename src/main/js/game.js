@@ -58,7 +58,7 @@ class Game extends React.Component {
 				hand: [
 					{'card': this.deck.popCardFromTop(), 'visibility': false},
 					{'card': this.deck.popCardFromTop(), 'visibility': true},
-				]
+				],
 			},
 			user: {
 				hand: [
@@ -123,10 +123,17 @@ class Game extends React.Component {
 		return this.getValue(this.state.dealer);
 	};
 
-	hit = () =>  {
+	dealerMove = () => {
+		if(this.getDealerValue() > 17){
+			this.state.dealer.hand.push({'card': this.deck.popCardFromTop(), 'visibility': true});
+		}
+		this.forceUpdate();
+	};
+
+	userHit = () =>  {
 		this.state.user.hand.push({'card': this.deck.popCardFromTop(), 'visibility': true});
 		this.forceUpdate();
-		console.log('Player Value: ' + this.getPlayerValue());
+		
 		/*//Player and dealer has not gone over 21
 		if(playerValue <= 21 && dealerValue <= 21) {
             playerValue += (getRandomInt(10) + 1); //number from 0 - 10
@@ -155,7 +162,6 @@ class Game extends React.Component {
 	};
 
 	stay = () =>  {
-
 
 	};
 
@@ -216,9 +222,6 @@ class Game extends React.Component {
 					}
 				</div>
 
-				<div>Deck Size: {this.deck.length}</div>
-				<div>Full deck of cards...</div>
-
 				<button className={'btn btn-primary'} onClick={this.addToBalance}>Add 10 to Balance</button>
 				<br/>
 				BALANCE: {this.props.user.balance}
@@ -230,7 +233,7 @@ class Game extends React.Component {
 				<br/>
 
 				<button className={'btn btn-success'} onClick={this.shuffleDeck}>Shuffle Cards</button>
-				<button className={'btn btn-secondary'} onClick={this.hit}>Hit</button>
+				<button className={'btn btn-secondary'} onClick={this.userHit}>Hit</button>
 				<button className={'btn btn-secondary'} onClick={this.stay}>Stay</button>
 				<button className={'btn btn-danger'} onClick={this.restart}>Restart</button>
 
