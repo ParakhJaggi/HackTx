@@ -75,7 +75,7 @@ class Game extends React.Component {
 	};
 
 	restart = () =>  {
-		console.log("Restarting game");
+		console.log('Restarting game');
 		playerValue = 0;
 		dealerValue = 0;
 		this.deck = new Deck.Deck();
@@ -90,7 +90,7 @@ class Game extends React.Component {
             playerValue += (getRandomInt(10) + 1); //number from 0 - 10
             this.deck.length -= 1;
             if (playerValue > 21) {
-                playerValue = "BUST!";
+                playerValue = 'BUST!';
             }
             else {
                 console.log(playerValue);
@@ -103,7 +103,7 @@ class Game extends React.Component {
 			dealerValue += (getRandomInt(10) + 1); //number from 0 - 10
             this.deck.length -= 1;
 			if (dealerValue > 21) {
-				dealerValue = "BUST!";
+				dealerValue = 'BUST!';
 			}
 			else {
 				console.log(dealerValue);
