@@ -32,7 +32,7 @@ public class UserService {
 	public static class RegistrationRequest {
 		private String principal;
 		private String password;
-		private Map<String, Object> attributes;
+		private Double balance;
 
 		public String getPrincipal() {
 			return principal;
@@ -50,20 +50,18 @@ public class UserService {
 			this.password = password;
 		}
 
-		public Map<String, Object> getAttributes() {
-			return attributes;
+		public Double getBalance() {
+			return balance;
 		}
 
-		public void setAttributes(Map<String, Object> attributes) {
-			this.attributes = attributes;
+		public void setBalance(Double balance) {
+			this.balance = balance;
 		}
-
-
 	}
 
 	public UserDto register(RegistrationRequest request) {
 		UserAuthenticationDto userAuthentication = new UserAuthenticationDto(
-				new UserDto(request.getPrincipal()), passwordEncoder.encode(request.getPassword()));
+				new UserDto(request.getPrincipal(), request.getBalance()), passwordEncoder.encode(request.getPassword()));
 
 		userDao.save(userAuthentication);
 		return userAuthentication.getUser();

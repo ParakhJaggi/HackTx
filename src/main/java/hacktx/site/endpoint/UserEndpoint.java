@@ -5,11 +5,7 @@ import java.util.Optional;
 import hacktx.site.common.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import hacktx.site.common.user.UserDto;
 
@@ -33,22 +29,12 @@ public class UserEndpoint {
 		return userService.register(request);
 	}
 
-	@GetMapping(value = "/get_balance")
-	public double getBalance() {
-		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
-		UserDto user = userService.findUserByPrincipal(principal).get();
-
-		return user.getBalance();
-	}
-
 	@PostMapping(value = "/update_balance/{balance}")
-	public UserDto updateBalance(double balance) {
+	public UserDto updateBalance(@PathVariable("balance") Double val) {
 		String principal = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserDto user = userService.findUserByPrincipal(principal).get();
-		user.setBalance(balance);
+		user.setBalance(user.getBalance() + val);
 		userService.updateBalance(user);
-
-
 		return user;
 	}
 

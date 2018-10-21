@@ -2,7 +2,11 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 export function register(user) {
-	return axios.post('/api/user/register', user);
+	return axios.post('/api/user/register', {
+		principal: user.principal,
+		password: user.password,
+		balance: user.balance,
+	});
 }
 
 export function authenticate(username, password) {
@@ -23,12 +27,8 @@ export function authenticate(username, password) {
 	);
 }
 
-export function getBalance() {
-	return axios.get('/api/user/get_balance');
-}
-
 export function updateBalance(val) {
-	return axios.get('/api/user/update_balance/' + val);
+	return axios.post('/api/user/update_balance/' + val);
 }
 
 export function getUserDetails() {

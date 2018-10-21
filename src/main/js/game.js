@@ -73,6 +73,8 @@ class Game extends React.Component {
 
 				<button className={'btn btn-primary'} onClick={this.addToBalance}>Add 10 to Balance</button>
 				<br/>
+				BALANCE: {this.props.user.balance}
+				<br/>
 
 				<button className={'btn btn-success'} onClick={this.shuffleDeck}>Shuffle Cards</button>
 				<button className={'btn btn-secondary'} onClick={this.hit}>Hit</button>
