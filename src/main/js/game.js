@@ -16,6 +16,10 @@ const ImageMap = [Images.AceClubs, Images.TwoClubs, Images.ThreeClubs, Images.Fo
 const centerStyle = {textAlign: 'center'};
 
 class Game extends React.Component {
+
+	var playerTurn = 1;
+	var computerTurn = 0;
+
 	constructor() {
 		super();
 		this.deck = new Deck.Deck();
@@ -28,11 +32,17 @@ class Game extends React.Component {
 	};
 
 	restart() {
-
+		console.log("Restarting game...");
+		this.deck = new Deck.Deck();
+		this.deck.showDeckImages();
+		this.deck.shuffle();
+		this.forceUpdate();
 	}
 
 	hit() {
+		if(playerTurn){
 
+		}
 	}
 
 	stay() {
