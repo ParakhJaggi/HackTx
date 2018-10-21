@@ -1,3 +1,4 @@
+import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 export function register(user) {
@@ -20,6 +21,14 @@ export function authenticate(username, password) {
 			}
 		}
 	);
+}
+
+export function getBalance() {
+	return axios.get('/api/user/get_balance');
+}
+
+export function updateBalance(val) {
+	return axios.get('/api/user/update_balance/' + val);
 }
 
 export function getUserDetails() {
@@ -45,7 +54,18 @@ Actions.Types = {
 	SET_USER: 'SET_USER'
 };
 
+Actions.updateBalance = val => {
+	return (dispatch) => {
+		return updateBalance(val).then(() => {
+			return getUserDetails().then(user => {
+				dispatch(Actions.setUser(user));
+			});
+		});
+	};
+};
+
 Actions.register = user => {
+	user.balance = 0;
 	return (dispatch) => {
 		return register(user).then(() => {
 			return dispatch(Actions.authenticate(user.principal, user.password));
@@ -69,16 +89,26 @@ Actions.authenticate = (username, password) => {
 
 Actions.logout = () => {
 	return (dispatch) => {
+		// Reset all User Action states
 		dispatch(Actions.setAuthentication(null));
 		dispatch(Actions.setUser(null));
+		const cookies = new Cookies();
+		cookies.remove('authentication');
+		cookies.remove('user');
 	};
 };
 
 Actions.setAuthentication = authentication => {
+	// Set authentication cookie
+	const cookies = new Cookies();
+	cookies.set('authentication', authentication, { path: '/' });
 	return {type: Actions.Types.SET_AUTHENTICATION, authentication};
 };
 
 Actions.setUser = user => {
+	// Set user cookie
+	const cookies = new Cookies();
+	cookies.set('user', user, { path: '/' });
 	return {type: Actions.Types.SET_USER, user};
 };
 
