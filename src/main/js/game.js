@@ -21,11 +21,23 @@ class Game extends React.Component {
 		this.deck = new Deck.Deck();
 	}
 
-	shuffleDeck = () => {
+	shuffleDeck () {
 		console.log('Shuffling deck...');
 		this.deck.shuffle();
 		this.forceUpdate();
 	};
+
+	restart() {
+
+	}
+
+	hit() {
+
+	}
+
+	stay() {
+
+	}
 
 	render() {
 		return (
@@ -38,6 +50,9 @@ class Game extends React.Component {
 				<div>Full deck of cards...</div>
 
 				<button className={'btn btn-success'} onClick={this.shuffleDeck}>Shuffle Cards</button>
+				<button className={'btn btn-secondary'} onClick={this.hit}>Hit</button>
+				<button className={'btn btn-secondary'} onClick={this.stay}>Stay</button>
+				<button className={'btn btn-danger'} onClick={this.restart}>Restart</button>
 
 				{this.deck.showDeckImages()}
 			</div>
