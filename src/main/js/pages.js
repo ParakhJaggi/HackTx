@@ -30,7 +30,7 @@ export class NavBar1 extends React.Component {
 						</li>
 						}
 						<li className="nav-item ">
-							<a className="nav-link" href="/Game" style={{color:'white'}} > Play Game! <span className="sr-only">(current)</span></a>
+							<a className="nav-link" href="#/Game" style={{color:'white'}} > Play Game! <span className="sr-only">(current)</span></a>
 						</li>
 
 						{!_.isDefined(this.props.user) &&
@@ -71,12 +71,7 @@ export class Home extends React.Component {
 			<div className="container padded">
 				This is the home page.
 
-				<ul>
-					<li><Link to="/register">Register</Link></li>
-					<li><Link to="/login">Login</Link></li>
-					<li><Link to="/page-1">Page 1</Link></li>
-					<li><Link to="/game">Game</Link></li>
-				</ul>
+
 			</div>
 		);
 	}
