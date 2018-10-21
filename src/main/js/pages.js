@@ -108,7 +108,7 @@ export class LoginPage extends React.Component {
 						<hr/>
 						<Login.LoginForm/>
 						<div className="text-center">
-							<a className="d-block small" href="/#/page-1">Play Game</a>
+							<a className="d-block small" href="/#/game">Play Game</a>
 
 						</div>
 
